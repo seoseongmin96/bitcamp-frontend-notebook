@@ -1,6 +1,7 @@
 import React from 'react'
-const Grade =() =>{
-    return <><h1>Grade폼</h1>
+import Layout from '../containers/Layout'
+export default function Grade () {
+    return <Layout><h1>Grade폼</h1>
     <form>
     
     <div>
@@ -17,11 +18,7 @@ const Grade =() =>{
     <input type="" /><br />
 
     </div>
-    
-
-    
     </form>
-    
-    </>
+    </Layout>
 }
-export default Grade;
+ ;
