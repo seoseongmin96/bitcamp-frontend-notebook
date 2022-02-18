@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useState} from "react"
 export default function Footer  ()  {
     return(<div>
         <div className="NavLinks_navLinksClass__Emk_i NavLinks_wide__OPVBB "><div className="NavLinks_logo__jG9Ed">

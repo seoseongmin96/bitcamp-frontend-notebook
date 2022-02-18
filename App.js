@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {useRoutes} from "react-router-dom";
 import Bmi from "./components/Bmi";
 import Calc from "./components/Calc";
 import Grade from "./components/Grade";
 import Home from "./pages/Home";
 import Login from "./components/Login";
+import Counter from "./components/Counter";
 
 export default function AppApp () {
   return useRoutes([
@@ -13,6 +14,7 @@ export default function AppApp () {
     { path : "calc", element: <Calc />},
     { path : "grade", element: <Grade />},
     { path : "login", element: <Login />},
+    { path : "counter", element: <Counter />}
     ]);
 }
   

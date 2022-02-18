@@ -1,6 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Layout from '../containers/Layout'
 export default function Grade () {
+    const [Username, setUsername] = useState(0)
+    const [kor, setKor] = useState(0)
+    const [eng, setEng] = useState(0)
+    const [math, setMath] = useState(0)
     return <Layout><h1>Grade폼</h1>
     <form>
     
@@ -8,13 +12,13 @@ export default function Grade () {
     <label><b>Username</b></label>
     <input type="" /><br />
 
-    <label htmlFor=""><b>kor score</b></label>
+    <label htmlFor=""><b>kor </b></label>
     <input type="" /><br />
 
-    <label htmlFor=""><b>eng score</b></label>
+    <label htmlFor=""><b>eng </b></label>
     <input type="" /><br />
 
-    <label htmlFor=""><b>math score</b></label>
+    <label htmlFor=""><b>math </b></label>
     <input type="" /><br />
 
     </div>
