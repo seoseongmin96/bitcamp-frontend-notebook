@@ -1,42 +1,49 @@
-import React,{useState} from 'react' 
-import Layout from '../containers/Layout'
-
+import React, {useState} from 'react' 
+import Layout from '../containers/Layout';
+import axios  from 'axios';
 export default function Bmi(){
-    const [username, setUsername] = useState("")
-    const [height, setHeight] = useState(0)
-    const [weight, setWeight] = useState(0)
-    const [result, setResult] = useState(0)
-    const sum = () => {
-        let username = document.getElementById('username').value
-        console.log('이름 :' +username)
-        let height = document.getElementById('height').value
-        console.log('키 :' +height)
-        let weight = document.getElementById('weight').value
-        console.log('몸무게 :' + weight)
-        setUsername(username)
-        setHeight(height)
-        setWeight(weight)
-        setResult(String(username) + Number(height) + Number(weight))
-        console.log('결과 :'+result)
+
+    const [inputs , setInputs] = useState({})
+    const { name , weight , height } = inputs;
+   
+    const handleChange= (e) => {
+        e.preventDefault()
+    
+        const { value, name } = e.target;
+        setInputs({
+            ...inputs, [name] : value
+        })
+    }
+    const handleClick = (e) => {
+        e.preventDefault()
+        const bmiRequest = { name, weight, height}
+        alert( `사용자 이름: ${JSON.stringify(bmiRequest)}`)
+    
+    
+       /* axios.get(`http://localhost:8080/member/bmi/aaa/180.5/80.5`)
+            .then((res)=>{
+                alert(`답장이 도착했습니다 [내용] ${JSON.stringify(res.data)}`)
+            })*/
     }
 
-    return <Layout><h1>Bmi폼</h1>
-    
+
+    return (<Layout>
+        <form>
+        <h1>Bmi폼</h1>
+        
     
     <div>
     <label><b>Username</b></label>
-    <input id="username" type="" /><br />
+    <input type="text" onChange={handleChange} name="name"/><br />
 
-    <label htmlFor=""><b>height</b></label>
-    <input id= "height" type="" /><br />
+    <label htmlFor=""><b>키</b></label>
+    <input type="text" onChange={handleChange} name="height"/><br />
 
     <label htmlFor=""><b>weight</b></label>
-    <input id= "weight" type="" /><br />
-    <button onClick={() =>{sum()}}>결과 버튼</button>
-    <div>결과: {username} , {height} , {weight}</div>
-    </div>
-   
-    </Layout>
-     
+    <input type= "text" onChange={handleChange} name="weight"/><br/>
+    <button onClick={handleClick}>BMI 체크</button><br />
+    </div> 
+    
+    </form>
+    </Layout>)
 }
- 

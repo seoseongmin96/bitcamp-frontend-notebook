@@ -1,10 +1,26 @@
 import React,{useState} from 'react'
 import Layout from '../containers/Layout'
+import axios from 'axios'
 export default function Login (){
-    const [Username, setUsername] = useState("")
-    const [password, setPassword] = useState(0)
-    const [result, setResult] = useState("")
-    const sum = () => {
+
+    const [ inputs, setInputs] = useState([])
+    const { username, password} = inputs;
+
+    const handleChange = (e) => {
+        e.preventDefault()
+
+        const { value, name} = e.target;
+        setInputs({
+            ...inputs, [name] : value
+        })
+    }
+    const handleClick = (e) => {
+        e.preventDefault()
+        const loginRequest = { username, password}
+        alert(`로그인 : ${JSON.stringify(loginRequest)}`)
+    
+    
+    /*const sum = () => {
         let username = document.getElementById('username').value
         console.log('이름 :' +username)
         let password = document.getElementById('password').value
@@ -13,19 +29,22 @@ export default function Login (){
         setPassword(password)
         setResult("로그인 성공")
         console.log('결과 :' +result)
+    }*/
     }
-   
-    return <Layout><h1>로그인폼</h1>
+
+    return( <Layout>
+    <form>
+    <h1>로그인폼</h1>
     
   
     <div>
     <label><b>Username</b></label>
-    <input id= "username" type="" /><br />
+    <input type= "text" onChange={handleChange} name="username"/><br />
 
     <label htmlFor=""><b>Password</b></label>
-    <input id= "password" type="" /><br />
+    <input type= "text" onChange={handleChange} name="password"/><br />
 
-    <button onClick={()=>{sum()}}>Login</button><br />
+    <button onClick={handleClick}>Login</button><br />
     <label><input type="checkbox" />Remember me</label><br />
     
     
@@ -34,8 +53,8 @@ export default function Login (){
     <button>Cancel</button><br />
     <span>Forgot <a>password?</a></span>
     </div>
-    <div>결과: {result}</div>
-    </Layout>
+    </form>
+    </Layout>)
     
     }
 
