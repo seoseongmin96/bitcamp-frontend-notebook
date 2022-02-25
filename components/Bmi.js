@@ -4,6 +4,7 @@ import { memberBmi } from '../api/index';
 export default function Bmi(){
 
     const [inputs , setInputs] = useState({})
+    const [ result, setResult] = useState(``)
     const { name , weight , height } = inputs;
    
     const handleChange = (e) => {
@@ -16,33 +17,29 @@ export default function Bmi(){
     }
     const handleClick = (e) => {
         e.preventDefault()
-        const bmiRequest = { name, weight, height}
-        console.log( `사용자 이름: ${JSON.stringify(bmiRequest)}`)
-        memberBmi(bmiRequest)
-        .then ( res => {
-            alert(res.data)
-        })
-        .catch( err => console.log(`에러발생 : ${err}`))
+        
+        memberBmi({name, weight, height}).then(res => setResult(res.data)).catch( err => console.log(`에러 발생${err}`))
+        
     }
 
 
     return (<Layout>
-        <form>
+        
         <h1>Bmi폼</h1>
         
-    
-    <div>
+        <form action="">
+   
     <label><b>Username</b></label>
-    <input type="text" onChange={handleChange} name="name"/><br />
+    <input name="name" type="text" onChange={handleChange} /><br />
 
-    <label htmlFor=""><b>키</b></label>
-    <input type="text" onChange={handleChange} name="height"/><br />
+    <label htmlFor=""><b>height</b></label>
+    <input name= "height" type="text" onChange={handleChange} /><br />
 
     <label htmlFor=""><b>weight</b></label>
-    <input type= "text" onChange={handleChange} name="weight"/><br/>
-    <button onClick={handleClick}>BMI 체크</button><br />
-    </div> 
-    
+    <input name="weight" type= "text" onChange={handleChange} /><br/>
+    <button onClick={handleClick}>전 송</button>
     </form>
+    <div>Bmi 결과 : {result}</div>
+    
     </Layout>)
 }
